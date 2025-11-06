@@ -1,0 +1,8 @@
+# === YOLO Dataset Configuration ===
+
+train: C:/Users/metec/OneDrive/Masaüstü/YAP470_Dataset/train/images
+val: C:/Users/metec/OneDrive/Masaüstü/YAP470_Dataset/val/images
+
+nc: 3
+
+names: ['car', 'bus', 'motorcycle']
