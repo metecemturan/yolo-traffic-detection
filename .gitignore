@@ -1,0 +1,33 @@
+# === Python ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# === Jupyter ===
+.ipynb_checkpoints/
+
+# === Virtual Environments ===
+venv/
+.env/
+.venv/
+
+# === Dataset ===
+YAP470_Dataset/
+*.zip
+*.tar
+*.rar
+
+# === YOLO outputs ===
+runs/
+*.pt
+*.weights
+
+# === VSCode ===
+.vscode/
+
+# === OS files ===
+.DS_Store
+Thumbs.db
