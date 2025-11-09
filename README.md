@@ -55,4 +55,4 @@ Filtered annotations were created for only the required classes, and datasets we
 
 Models are trained using:
 ```bash
-python train.py --img 640 --batch 16 --epochs 100 --data data.yaml --weights None '' --device 0
+python train.py --img 640 --batch 16 --epochs 100 --data data.yaml --weights None --device 0
