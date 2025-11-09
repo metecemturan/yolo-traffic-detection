@@ -36,7 +36,7 @@ Filtered annotations were created for only the required classes, and datasets we
 |-------|------------------|-------------|
 | Train | 17,000 | Merged COCO + Vehicle Dataset |
 | Val   | 1,200  | 7% validation ratio |
-| Classes | Car (0), Bus (1), Motorcycle (2), Person (3) |
+| Classes | Car (0), Bus (1), Motorcycle (2) |
 
 ---
 
