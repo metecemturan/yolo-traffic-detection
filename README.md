@@ -12,8 +12,6 @@ The goal of this study is to identify the most efficient YOLO model for detectin
 The models are trained on a **harmonized multi-source dataset** derived from:
 - **COCO 2017**  
 - **Vehicle Dataset for YOLO**  
-- **PASCAL VOC 2007**  
-- **Open Images V7**
 
 Filtered annotations were created for only the required classes, and datasets were merged after converting all labels from COCO JSON format to YOLO TXT format.
 
