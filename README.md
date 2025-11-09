@@ -1,4 +1,4 @@
-# Real-time Object Detection and Comparison of YOLOv5, YOLOv7, and YOLOv11
+# Comparative Evaluation of YOLOv5s, YOLOv7-tiny, and YOLOv11s for Real-time Traffic Object Detection
 
 This repository contains the implementation of a **real-time object detection system** that compares **YOLOv5**, **YOLOv7**, and **YOLOv11** models on **vehicle detection** tasks.  
 The project evaluates **accuracy, inference speed, and computational efficiency** under unified training and validation conditions.
