@@ -19,6 +19,7 @@ YAP470_Dataset/
 *.zip
 *.tar
 *.rar
+*.mp4
 
 # === YOLO outputs ===
 runs/
