@@ -1,7 +1,7 @@
 # === YOLO Dataset Configuration ===
 
-train: C:/Users/metec/OneDrive/Belgeler/YAP470_Dataset/train/images
-val: C:/Users/metec/OneDrive/Belgeler/YAP470_Dataset/val/images
+train: C:/YAP470_Dataset_v2/train
+val: C:/YAP470_Dataset_v2/val
 
 nc: 3
 
