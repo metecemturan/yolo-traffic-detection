@@ -41,11 +41,6 @@ Key goals:
 - ~1,200 validation images  
 - Approximately 7% validation split  
 
-Instance distribution:
-- Car: 43,911  
-- Bus: 6,403  
-- Motorcycle: 9,023  
-
 All annotations are converted to **YOLO format** and normalized.
 
 ---
