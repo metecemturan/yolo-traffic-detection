@@ -1,56 +1,180 @@
-# Comparative Evaluation of YOLOv5s, YOLOv7-tiny, and YOLOv11s for Real-time Traffic Object Detection
+# Comparative Evaluation of YOLOv5s, YOLOv8s, and YOLOv11s for Traffic Object Detection
 
-This repository contains the implementation of a **real-time object detection system** that compares **YOLOv5**, **YOLOv7**, and **YOLOv11** models on **vehicle detection** tasks.  
-The project evaluates **accuracy, inference speed, and computational efficiency** under unified training and validation conditions.
+This repository presents a comparative study of **YOLOv5s**, **YOLOv8s**, and **YOLOv11s** models for **real-time traffic object detection**.  
+All models are trained **from scratch** under identical conditions to analyze architectural evolution, detection accuracy, and computational efficiency.
 
----
-
-## 🚗 Project Overview
-
-The goal of this study is to identify the most efficient YOLO model for detecting **cars, buses and motorcycles** in real-time video streams.
-
-The models are trained on a **harmonized multi-source dataset** derived from:
-- **COCO 2017**  
-- **Vehicle Dataset for YOLO**  
-
-Filtered annotations were created for only the required classes, and datasets were merged after converting all labels from COCO JSON format to YOLO TXT format.
+The study focuses on three traffic-related classes:
+- **Car**
+- **Bus**
+- **Motorcycle**
 
 ---
 
-## 🧠 Selected YOLO Models
+## 📌 Project Overview
 
-| YOLO Version | Variant | Parameters (M) | Year | Key Features |
-|---------------|----------|----------------|------|---------------|
-| YOLOv5 | YOLOv5s | 7.2 | 2020 | Lightweight, PyTorch-based baseline |
-| YOLOv7 | YOLOv7-tiny | 6.2 | 2022 | E-ELAN, model re-parameterization |
-| YOLOv11 | YOLOv11s | 11.2 | 2024 | Sparse attention, dynamic label assignment |
+Real-time object detection is a key component of intelligent transportation systems and autonomous driving.  
+This project evaluates three generations of YOLO models using a **unified and balanced dataset** constructed from multiple sources, ensuring a fair comparison.
 
-> The “small” (s) and “tiny” variants were selected for their low parameter counts, which make them suitable for local GPU training while preserving the core architectural characteristics of their respective versions.  
-> *Table 1 shows the parameter comparison of these models.*
+Key goals:
+- Analyze architectural improvements across YOLO versions
+- Compare detection accuracy and generalization performance
+- Measure training cost and inference-related behavior
+- Identify the most suitable model for real-time traffic scenarios
 
 ---
 
-## 🧾 Dataset Summary
+## 🗂 Dataset
 
-| Split | Number of Images | Description |
-|-------|------------------|-------------|
-| Train | 17,000 | Merged COCO + Vehicle Dataset |
-| Val   | 1,200  | 7% validation ratio |
-| Classes | Car (0), Bus (1), Motorcycle (2) |
+### Dataset Sources
+- **COCO 2017** (filtered for traffic-related classes)
+- **Vehicle Dataset for YOLO** (domain-specific traffic images)
+
+### Classes
+| Class | Label |
+|------|------|
+| Car | 0 |
+| Bus | 1 |
+| Motorcycle | 2 |
+
+### Dataset Statistics
+- ~17,000 training images  
+- ~1,200 validation images  
+- Approximately 7% validation split  
+
+Instance distribution:
+- Car: 43,911  
+- Bus: 6,403  
+- Motorcycle: 9,023  
+
+All annotations are converted to **YOLO format** and normalized.
+
+---
+
+## 🧠 Model Selection
+
+| Model | Year | Parameters |
+|------|------|------------|
+| YOLOv5s | 2020 | ~7.2M |
+| YOLOv8s | 2023 | ~11.2M |
+| YOLOv11s | 2024 | ~10.2M |
+
+- **YOLOv5s**: CSP backbone, anchor-based detection  
+- **YOLOv8s**: Anchor-free detection head, improved feature aggregation  
+- **YOLOv11s**: Sparse attention, dynamic label assignment, refined feature scaling  
+
+All models use the **small (s)** variants to ensure comparable computational cost.
 
 ---
 
 ## ⚙️ Training Configuration
 
-| Setting | Value |
-|----------|-------|
-| Epochs | 100 |
-| Batch Size | 16 |
-| Image Size | 640x640 |
-| Optimizer | SGD (momentum=0.937) |
-| Augmentations | Mosaic, RandomFlip, HSV Shift |
-| Hardware | NVIDIA RTX 2060 / 1660 Ti / RX 7800 XT |
+All experiments were conducted under **identical conditions**:
 
-Models are trained using:
-```bash
-python train.py --img 640 --batch 16 --epochs 100 --data data.yaml --weights None --device 0
+- Training: **from scratch (pretrained = False)**
+- Input size: **640 × 640**
+- Batch size: **16**
+- Optimizer: **SGD**
+  - Learning rate: 0.01
+  - Momentum: 0.937
+- Class weighting enabled to mitigate imbalance
+- GPU: **NVIDIA RTX 2060**
+
+| Model | Epochs |
+|------|--------|
+| YOLOv5s | 100 |
+| YOLOv8s | 100 |
+| YOLOv11s | 150 |
+
+---
+
+## 📊 Evaluation Metrics
+
+The following metrics are used:
+- **mAP@0.5**
+- **mAP@0.5:0.95**
+- **Precision**
+- **Recall**
+- Training & validation loss curves
+- Confusion matrices
+
+---
+
+## 📈 Results
+
+### Quantitative Performance
+
+| Model | mAP@0.5 | mAP@0.5:0.95 | Precision | Recall |
+|------|--------|--------------|----------|--------|
+| YOLOv5s | 0.7189 | 0.5498 | 0.7402 | 0.6806 |
+| YOLOv8s | 0.7319 | 0.5669 | 0.7351 | **0.7033** |
+| YOLOv11s | **0.7476** | **0.5823** | **0.7899** | 0.6817 |
+
+### Training Time (RTX 2060)
+
+| Model | Epochs | Total Time (hours) | Avg / Epoch (min) |
+|------|--------|--------------------|------------------|
+| YOLOv5s | 100 | 10.03 | 6.02 |
+| YOLOv8s | 100 | 10.23 | 6.14 |
+| YOLOv11s | 150 | 15.99 | 6.40 |
+
+---
+
+## 🔍 Key Observations
+
+- **YOLOv5s**
+  - Lowest parameter count
+  - Higher background confusion
+  - Baseline performance
+
+- **YOLOv8s**
+  - Best recall
+  - Anchor-free detection improves object coverage
+  - Slightly higher false positives
+
+- **YOLOv11s**
+  - Best overall performance
+  - Highest precision and mAP
+  - Most balanced confusion matrix
+  - No overfitting despite longer training
+
+---
+
+## 🏆 Recommendation Summary
+
+| Criterion | Best Model |
+|--------|-----------|
+| Highest Precision | YOLOv11s |
+| Best Recall | YOLOv8s |
+| Lowest Complexity | YOLOv5s |
+| Best Overall Performance | **YOLOv11s** |
+
+---
+
+## 🚀 Future Work
+
+- Train larger YOLO variants (m / l / x)
+- Expand dataset size and class diversity
+- Evaluate inference FPS and latency on edge devices
+- Extend to pedestrian and traffic sign detection
+
+---
+
+## 📚 References
+
+- COCO 2017 Dataset  
+- Vehicle Dataset for YOLO  
+- YOLOv5, YOLOv8, YOLOv11 official implementations  
+
+---
+
+## 👤 Authors
+
+**Mete Cem Turan**  
+**Kerem Elma**  
+**Kayrahan Toprak Tosun**
+
+---
+
+## 📄 License
+
+This project is released for **academic and research purposes**.
