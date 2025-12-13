@@ -152,7 +152,15 @@ The following metrics are used:
 | Best Overall Performance | **YOLOv11s** |
 
 ---
+## 🔍 Inference Comparison
 
+**YOLOv8s and YOLOv11S Inference Result**  
+![YOLOv8s and YOLOv11S Inference](images/v11_v8_comparison.jpeg)
+
+**YOLOv11s Inference Result**  
+![YOLOv11s Inference](images/v11.png)
+
+---
 ## 🚀 Future Work
 
 - Train larger YOLO variants (m / l / x)
