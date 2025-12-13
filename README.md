@@ -65,18 +65,17 @@ All annotations are converted to **YOLO format** and normalized.
 All models use the **small (s)** variants to ensure comparable computational cost.
 
 ---
-
 ## ⚙️ Training Configuration
 
 All experiments were conducted under **identical conditions**:
 
-- Training: **from scratch (pretrained = False)**
+- Training: **from scratch (no pretrained weights)**
 - Input size: **640 × 640**
 - Batch size: **16**
-- Optimizer: **SGD**
-  - Learning rate: 0.01
-  - Momentum: 0.937
-- Class weighting enabled to mitigate imbalance
+- Optimizer: **SGD (Ultralytics default)**
+  - Initial learning rate: **0.01**
+  - Momentum: **0.937**
+- Class weighting enabled to mitigate class imbalance
 - GPU: **NVIDIA RTX 2060**
 
 | Model | Epochs |
@@ -85,7 +84,16 @@ All experiments were conducted under **identical conditions**:
 | YOLOv8s | 100 |
 | YOLOv11s | 150 |
 
----
+### Training Commands (Ultralytics CLI)
+
+bash
+#### YOLOv5s
+yolo train model=yolov5s.yaml data=data.yaml imgsz=640 batch=16 epochs=100 device=0
+#### YOLOv8s
+yolo train model=yolov8s.yaml data=data.yaml imgsz=640 batch=16 epochs=100 device=0
+#### YOLOv11s
+yolo train model=yolov11s.yaml data=data.yaml imgsz=640 batch=16 epochs=150 device=0
+
 
 ## 📊 Evaluation Metrics
 
