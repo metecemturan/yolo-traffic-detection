@@ -83,11 +83,34 @@ All experiments were conducted under **identical conditions**:
 
 bash
 #### YOLOv5s
+```
 yolo train model=yolov5s.yaml data=data.yaml imgsz=640 batch=16 epochs=100 device=0
+```
 #### YOLOv8s
+```
 yolo train model=yolov8s.yaml data=data.yaml imgsz=640 batch=16 epochs=100 device=0
+```
 #### YOLOv11s
+```
 yolo train model=yolov11s.yaml data=data.yaml imgsz=640 batch=16 epochs=150 device=0
+```
+
+---
+
+## 🟢 Hızlı Çalıştırma (Canlı İzleme)
+
+- Çoklu model ile çalıştırma ve çıktıları kaydetme:
+```bash
+python live_detect.py -m v5.pt v8.pt v11.pt -s video.mp4 --save-video --save-jsonl --save-csv
+```
+
+- Tek model ile hızlı örnek:
+```bash
+python live_detect.py -m v11-best.pt -s .\videos\ingiltere_kısa.mp4
+```
+
+Çıktılar `runs/auto` klasörüne kaydedilir; video (`.mp4`), tespit akışı (`.jsonl`) ve özet (`.csv`) dosyaları oluşturulur.
+
 
 
 ## 📊 Evaluation Metrics
