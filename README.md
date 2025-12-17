@@ -99,17 +99,17 @@ yolo train model=yolov11s.yaml data=data.yaml imgsz=640 batch=16 epochs=150 devi
 
 ## 🟢 Hızlı Çalıştırma (Canlı İzleme)
 
-- Çoklu model ile çalıştırma ve çıktıları kaydetme:
+- Running multiple models and recording outputs:
 ```bash
-python live_detect.py -m v5.pt v8.pt v11.pt -s video.mp4 --save-video --save-jsonl --save-csv
+python live_detect.py -m v5-best.pt v8-best.pt v11-best.pt -s video.mp4 --save-video --save-jsonl --save-csv
 ```
 
-- Tek model ile hızlı örnek:
+- Running with a single model:
 ```bash
-python live_detect.py -m v11-best.pt -s .\videos\ingiltere_kısa.mp4
+python live_detect.py -m v11-best.pt -s video.mp4
 ```
 
-Çıktılar `runs/auto` klasörüne kaydedilir; video (`.mp4`), tespit akışı (`.jsonl`) ve özet (`.csv`) dosyaları oluşturulur.
+The outputs are saved to the `runs/auto` folder; video (`.mp4`), detection stream (`.jsonl`), and summary (`.csv`) files are created.
 
 
 
