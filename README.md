@@ -81,7 +81,6 @@ All experiments were conducted under **identical conditions**:
 
 ### Training Commands (Ultralytics CLI)
 
-bash
 #### YOLOv5s
 ```
 yolo train model=yolov5s.yaml data=data.yaml imgsz=640 batch=16 epochs=100 device=0
@@ -97,7 +96,7 @@ yolo train model=yolov11s.yaml data=data.yaml imgsz=640 batch=16 epochs=150 devi
 
 ---
 
-## 🟢 Hızlı Çalıştırma (Canlı İzleme)
+## Running Commands
 
 - Running multiple models and recording outputs:
 ```bash
